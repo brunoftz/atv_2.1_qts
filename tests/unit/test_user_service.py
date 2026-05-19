@@ -64,7 +64,8 @@ def test_count_users_returns_correct_number():
     user_service.create_user({"name": "Gabi"})
     user_service.create_user({"name": "Hugo"})
     assert user_service.count_users() == 2
-    
+
+
 @pytest.mark.unit
 def test_create_user_with_invalid_name():
     user = user_service.create_user({"name": ""})
