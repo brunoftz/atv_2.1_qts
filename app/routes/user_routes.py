@@ -31,8 +31,11 @@ def create():
         return jsonify({"error": "name is required"}), 400
 
     user = create_user(data)
-    return jsonify(user), 201
 
+    if user is None:
+        return jsonify({"error": "User already exists"}), 400
+
+    return jsonify(user), 201
 
 @user_bp.route("/<int:user_id>", methods=["PUT"])
 def update(user_id):

@@ -32,3 +32,27 @@ def update_user(user_id, data):
 def delete_user(user_id):
     global users
     users = [u for u in users if u["id"] != user_id]
+
+def create_user(data):
+    global current_id
+
+    if not data.get("name"):
+        return None
+
+    existing_user = next(
+        (u for u in users if u["name"] == data["name"]),
+        None
+    )
+
+    if existing_user:
+        return None
+
+    user = {
+        "id": current_id,
+        "name": data["name"]
+    }
+
+    users.append(user)
+    current_id += 1
+
+    return user
