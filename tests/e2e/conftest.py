@@ -28,12 +28,7 @@ def live_server():
     base_url = f"http://127.0.0.1:{port}"
 
     def run_app():
-        app.run(
-            host="127.0.0.1",
-            port=port,
-            debug=False,
-            use_reloader=False
-        )
+        app.run(host="127.0.0.1", port=port, debug=False, use_reloader=False)
 
     thread = threading.Thread(target=run_app, daemon=True)
     thread.start()
