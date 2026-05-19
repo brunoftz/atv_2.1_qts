@@ -15,7 +15,6 @@ options.add_argument("--disable-gpu")
 options.add_argument("--window-size=1920,1080")
 
 
-
 @pytest.fixture(scope="module")
 def live_server():
     app = create_app()
