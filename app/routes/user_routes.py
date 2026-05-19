@@ -5,9 +5,15 @@ from app.services.user_service import (
     create_user,
     update_user,
     delete_user,
+    count_users,
 )
 
 user_bp = Blueprint("users", __name__, url_prefix="/users")
+
+
+@user_bp.route("/count", methods=["GET"])
+def users_count():
+    return jsonify({"count": count_users()}), 200
 
 
 @user_bp.route("", methods=["GET"])
@@ -31,11 +37,8 @@ def create():
         return jsonify({"error": "name is required"}), 400
 
     user = create_user(data)
-
-    if user is None:
-        return jsonify({"error": "User already exists"}), 400
-
     return jsonify(user), 201
+
 
 @user_bp.route("/<int:user_id>", methods=["PUT"])
 def update(user_id):

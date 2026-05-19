@@ -69,4 +69,3 @@ def test_update_user_success(client):
     response = client.put(f"/users/{user_id}", json={"name": "Ciclano"})
     assert response.status_code == 200
     assert response.get_json()["name"] == "Ciclano"
-
